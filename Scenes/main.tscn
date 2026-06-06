@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://bxi82g3sljbct"]
+
+[ext_resource type="PackedScene" uid="uid://bqlgymw27cb21" path="res://Scenes/player.tscn" id="2_8gbba"]
+[ext_resource type="Script" uid="uid://cljtfmnsumc5s" path="res://Scripts/enemies_spawner.gd" id="2_bo1nx"]
+[ext_resource type="Texture2D" uid="uid://dle81mho413oi" path="res://Images/background.png" id="3_8gbba"]
+
+[node name="Main" type="Node2D" unique_id=1517014174]
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1793902075]
+repeat_size = Vector2(320, 320)
+
+[node name="background" type="Sprite2D" parent="Parallax2D" unique_id=61773604]
+texture_repeat = 2
+position = Vector2(446, 83)
+texture = ExtResource("3_8gbba")
+region_enabled = true
+region_rect = Rect2(2000, 2000, 2000, 2000)
+
+[node name="player" parent="." unique_id=698290450 instance=ExtResource("2_8gbba")]
+position = Vector2(579, 323)
+collision_layer = 4
+speed = 467
+
+[node name="EnemiesSpawner" type="Node2D" parent="." unique_id=936215147]
+script = ExtResource("2_bo1nx")
+raio_minimo = 400.0
+
+[node name="TimerSpawn" type="Timer" parent="EnemiesSpawner" unique_id=270746573]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="EnemiesSpawner/TimerSpawn" to="EnemiesSpawner" method="_on_timer_spawn_timeout"]

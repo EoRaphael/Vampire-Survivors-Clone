@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://becmt3hjfo5hn"]
+
+[ext_resource type="Script" uid="uid://c836jg7jtlvuf" path="res://Scenes/defeat_screen.gd" id="1_ru82l"]
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=582750031]
+process_mode = 3
+script = ExtResource("1_ru82l")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1616804759]
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 1088.0
+offset_bottom = 656.0
+color = Color(0, 0, 0, 0.40784314)
+
+[node name="TitleText" type="Label" parent="." unique_id=778333219]
+offset_left = 424.0
+offset_top = 136.0
+offset_right = 637.0
+offset_bottom = 205.0
+theme_override_colors/font_color = Color(0.87058824, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "YOU DIE!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FinalTime" type="Label" parent="." unique_id=1976640947]
+offset_left = 408.0
+offset_top = 288.0
+offset_right = 660.0
+offset_bottom = 335.0
+text = "Você sobreviveu por: 00.00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RestartButton" type="Button" parent="." unique_id=1808452379]
+offset_left = 408.0
+offset_top = 496.0
+offset_right = 664.0
+offset_bottom = 560.0
+text = "Restart"
+
+[connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]

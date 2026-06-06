@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://cqym3h27sydfm"]
+
+[ext_resource type="Script" uid="uid://cjvj36nfi1735" path="res://Scripts/enemy.gd" id="1_1f0kj"]
+[ext_resource type="Texture2D" uid="uid://cedcutxnei7ex" path="res://Images/redGodot.png" id="1_hghv2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hghv2"]
+size = Vector2(122, 119)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1f0kj"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_afpow"]
+bg_color = Color(0, 0.94509804, 0, 1)
+
+[node name="Enemy" type="CharacterBody2D" unique_id=1625099619 groups=["enemy"]]
+script = ExtResource("1_1f0kj")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1239463416]
+position = Vector2(2.861023e-06, -0.0061821938)
+scale = Vector2(0.10666668, 0.106006905)
+texture = ExtResource("1_hghv2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=246604195]
+position = Vector2(-1, -0.5)
+shape = SubResource("RectangleShape2D_hghv2")
+metadata/_edit_lock_ = true
+
+[node name="enemy_life" type="ProgressBar" parent="." unique_id=954733348]
+offset_left = -65.0
+offset_top = 67.0
+offset_right = 66.0
+offset_bottom = 80.0
+theme_override_styles/background = SubResource("StyleBoxFlat_1f0kj")
+theme_override_styles/fill = SubResource("StyleBoxFlat_afpow")
+value = 100.0
+show_percentage = false

@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://bqlgymw27cb21"]
+
+[ext_resource type="Script" uid="uid://dfk125verqm8l" path="res://Scripts/player.gd" id="1_cvnsp"]
+[ext_resource type="Texture2D" uid="uid://bjjmwm0xap3mp" path="res://Images/icon.svg" id="2_6t5aa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
+size = Vector2(104, 105)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
+size = Vector2(118, 119)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cvnsp"]
+bg_color = Color(1, 0, 0.011764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6t5aa"]
+bg_color = Color(0.2684347, 0.79437584, 7.70092e-07, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cvnsp"]
+radius = 284.00705
+
+[node name="player" type="CharacterBody2D" unique_id=698290450 groups=["player"]]
+motion_mode = 1
+script = ExtResource("1_cvnsp")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1990358745]
+texture = ExtResource("2_6t5aa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1289251720]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_onrkg")
+
+[node name="hitbox" type="Area2D" parent="." unique_id=1234444384]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox" unique_id=916757084]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_cvnsp")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=149480986]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1410607480]
+
+[node name="vida" type="Label" parent="CanvasLayer" unique_id=639578561]
+offset_left = 6.0
+offset_top = 4.0
+offset_right = 76.0
+offset_bottom = 53.0
+text = "Vida: 100
+"
+
+[node name="vidabarra" type="ProgressBar" parent="CanvasLayer" unique_id=337575065]
+offset_left = 5.0
+offset_top = 26.0
+offset_right = 384.0
+offset_bottom = 55.0
+theme_override_styles/background = SubResource("StyleBoxFlat_cvnsp")
+theme_override_styles/fill = SubResource("StyleBoxFlat_6t5aa")
+value = 100.0
+show_percentage = false
+
+[node name="TimerText" type="Label" parent="CanvasLayer" unique_id=357445647]
+offset_left = 419.0
+offset_top = 15.0
+offset_right = 657.0
+offset_bottom = 66.0
+text = "00:00:00:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TimerDano" type="Timer" parent="." unique_id=1234335249]
+
+[node name="AttackRange" type="Area2D" parent="." unique_id=2005889285]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange" unique_id=317735686]
+shape = SubResource("CircleShape2D_cvnsp")
+metadata/_edit_lock_ = true
+
+[node name="TimerShot" type="Timer" parent="." unique_id=1067415779]
+wait_time = 0.5
+autostart = true
+
+[connection signal="body_entered" from="hitbox" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="hitbox" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="TimerDano" to="." method="_on_timer_dano_timeout"]
+[connection signal="timeout" from="TimerShot" to="." method="_on_timer_shot_timeout"]
