@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="UpgradeResource" format=3 uid="uid://8fks4colswoi"]
+
+[ext_resource type="Script" uid="uid://bss3leckmdvbn" path="res://Scripts/upgrade_resource.gd" id="1_m4d3b"]
+[ext_resource type="Texture2D" uid="uid://b46tfw7ow6qk8" path="res://Images/pistoleiro.png" id="1_vlxta"]
+
+[resource]
+script = ExtResource("1_m4d3b")
+nome = "pistoleiro"
+descricao = "Aumenta o dano em +50"
+icone = ExtResource("1_vlxta")
+tipo_atributo = "dano_atual"
+valor_alteracao = 50.0
+metadata/_custom_type_script = "uid://bss3leckmdvbn"

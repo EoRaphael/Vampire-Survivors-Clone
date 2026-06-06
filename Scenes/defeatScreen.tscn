@@ -14,10 +14,11 @@ offset_bottom = 656.0
 color = Color(0, 0, 0, 0.40784314)
 
 [node name="TitleText" type="Label" parent="." unique_id=778333219]
-offset_left = 424.0
-offset_top = 136.0
-offset_right = 637.0
-offset_bottom = 205.0
+offset_left = 426.0
+offset_top = 141.0
+offset_right = 639.0
+offset_bottom = 210.0
+size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.87058824, 0, 0, 1)
 theme_override_font_sizes/font_size = 50
 text = "YOU DIE!"
@@ -25,19 +26,27 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="FinalTime" type="Label" parent="." unique_id=1976640947]
-offset_left = 408.0
-offset_top = 288.0
-offset_right = 660.0
-offset_bottom = 335.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -126.0
+offset_top = -25.0
+offset_right = 126.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
 text = "Você sobreviveu por: 00.00"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="RestartButton" type="Button" parent="." unique_id=1808452379]
 offset_left = 408.0
-offset_top = 496.0
+offset_top = 499.0
 offset_right = 664.0
-offset_bottom = 560.0
+offset_bottom = 563.0
 text = "Restart"
 
 [connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]

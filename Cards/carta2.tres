@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="UpgradeResource" format=3 uid="uid://ca8k5c6blngt5"]
+
+[ext_resource type="Script" uid="uid://bss3leckmdvbn" path="res://Scripts/upgrade_resource.gd" id="1_qqeqh"]
+
+[resource]
+script = ExtResource("1_qqeqh")
+nome = "teste"
+tipo_atributo = "cura"
+valor_alteracao = 20.0
+metadata/_custom_type_script = "uid://bss3leckmdvbn"

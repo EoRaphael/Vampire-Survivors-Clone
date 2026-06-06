@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var max_hp: int = 50
 @export var speed: float = 100
 @export var dano: int = 15
+@export var xp_orb_cena: PackedScene = preload("res://Scenes/xp_orb.tscn")
 
 @onready var enemy_hp: ProgressBar = $enemy_life
 
@@ -45,6 +46,18 @@ func tomar_dano(quantidade: int) -> void:
 
 func die() -> void:
 	print("Inimigo derrotado!")
-	queue_free() # Remove o inimigo do jogo
+	if xp_orb_cena:
+		var novo_orbe = xp_orb_cena.instantiate()
+		novo_orbe.global_position = global_position 
+		call_deferred("_criar_orbe_e_destruir")
+		
+func _criar_orbe_e_destruir() -> void:
+	if xp_orb_cena:
+		var novo_orbe = xp_orb_cena.instantiate()
+		novo_orbe.global_position = global_position
+		
+		get_parent().add_child(novo_orbe)
+		
+	queue_free()
 
 	
