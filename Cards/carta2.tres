@@ -4,7 +4,8 @@
 
 [resource]
 script = ExtResource("1_qqeqh")
-nome = "teste"
+nome = "Cura total"
+descricao = "Cura totalmente sua vida"
 tipo_atributo = "cura"
-valor_alteracao = 20.0
+valor_alteracao = 100.0
 metadata/_custom_type_script = "uid://bss3leckmdvbn"

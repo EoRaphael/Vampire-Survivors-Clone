@@ -4,6 +4,7 @@ extends Area2D
 @export var dano_do_tiro: float = 10.0
 var direcao: Vector2 = Vector2.ZERO
 
+
 func _physics_process(delta: float) -> void:
 	global_position += direcao * velocidade * delta
 

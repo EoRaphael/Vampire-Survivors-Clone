@@ -1,22 +1,75 @@
 [gd_scene format=3 uid="uid://bced57st2wypg"]
 
 [ext_resource type="Script" uid="uid://hkv2gkfhgs4r" path="res://Scenes/xp_orb.gd" id="1_c7xup"]
-[ext_resource type="Texture2D" uid="uid://dpyqashivujl8" path="res://Images/pngwing.com.png" id="1_vmcme"]
+[ext_resource type="Texture2D" uid="uid://cli26k55kexry" path="res://Images/gema.png" id="2_c7xup"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c7xup"]
 radius = 29.017237
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s6bd7"]
+atlas = ExtResource("2_c7xup")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ktd6"]
+atlas = ExtResource("2_c7xup")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_woeg0"]
+atlas = ExtResource("2_c7xup")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25c7d"]
+atlas = ExtResource("2_c7xup")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2lw2"]
+atlas = ExtResource("2_c7xup")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yvxll"]
+atlas = ExtResource("2_c7xup")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0etmt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s6bd7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ktd6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_woeg0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_25c7d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y2lw2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yvxll")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
 
 [node name="XpOrb" type="Area2D" unique_id=42637662]
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("1_c7xup")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=386085431]
-position = Vector2(-4.7683716e-07, 0)
-scale = Vector2(0.08888889, 0.08888889)
-texture = ExtResource("1_vmcme")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1029600414]
 shape = SubResource("CircleShape2D_c7xup")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2126510727]
+position = Vector2(-4.7683716e-07, -4.7683716e-07)
+scale = Vector2(3.6562498, 3.6562498)
+sprite_frames = SubResource("SpriteFrames_0etmt")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.5212878
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

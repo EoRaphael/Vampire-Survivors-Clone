@@ -1,10 +1,33 @@
 [gd_scene format=3 uid="uid://cqym3h27sydfm"]
 
 [ext_resource type="Script" uid="uid://cjvj36nfi1735" path="res://Scripts/enemy.gd" id="1_1f0kj"]
-[ext_resource type="Texture2D" uid="uid://cedcutxnei7ex" path="res://Images/redGodot.png" id="1_hghv2"]
+[ext_resource type="Texture2D" uid="uid://ctb81sl4anm6g" path="res://Images/enemy.png" id="2_1f0kj"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hghv2"]
-size = Vector2(122, 119)
+[sub_resource type="AtlasTexture" id="AtlasTexture_afpow"]
+atlas = ExtResource("2_1f0kj")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_287tu"]
+atlas = ExtResource("2_1f0kj")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0830c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_afpow")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_287tu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ghaa6"]
+radius = 47.0
+height = 94.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1f0kj"]
 bg_color = Color(1, 0, 0, 1)
@@ -16,21 +39,21 @@ bg_color = Color(0, 0.94509804, 0, 1)
 motion_mode = 1
 script = ExtResource("1_1f0kj")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1239463416]
-position = Vector2(2.861023e-06, -0.0061821938)
-scale = Vector2(0.10666668, 0.106006905)
-texture = ExtResource("1_hghv2")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1155023889]
+position = Vector2(2.2737368e-13, 2.2737368e-13)
+scale = Vector2(6.4687495, 6.4687495)
+sprite_frames = SubResource("SpriteFrames_0830c")
+autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=246604195]
-position = Vector2(-1, -0.5)
-shape = SubResource("RectangleShape2D_hghv2")
-metadata/_edit_lock_ = true
+position = Vector2(-1, 10)
+shape = SubResource("CapsuleShape2D_ghaa6")
 
 [node name="enemy_life" type="ProgressBar" parent="." unique_id=954733348]
 offset_left = -65.0
-offset_top = 67.0
+offset_top = 60.0
 offset_right = 66.0
-offset_bottom = 80.0
+offset_bottom = 73.0
 theme_override_styles/background = SubResource("StyleBoxFlat_1f0kj")
 theme_override_styles/fill = SubResource("StyleBoxFlat_afpow")
 value = 100.0

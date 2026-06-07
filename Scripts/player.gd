@@ -16,6 +16,7 @@ var xp_necessario: int = 50 # Quanto de XP precisa para o Level 2
 @onready var attack_range: Area2D = $AttackRange
 @onready var timer_shot: Timer = $TimerShot
 @onready var vidabarra: ProgressBar = $vidabarra
+@onready var animation: AnimatedSprite2D = $AnimatedSprite2D
 
 var hud: CanvasLayer = null
 
@@ -37,11 +38,21 @@ func _ready() -> void:
 func _physics_process(delta):
 	get_input()
 	move_and_slide()
-	vidabarra.value = vida_atual
 	tempo_sobrevivido(delta)
 	
 func get_input():
 	var input_direction = Input.get_vector("left","right","up","down")
+	if input_direction == Vector2.ZERO:
+		animation.play("idle")
+	else:
+		animation.play("walk")	
+
+		if input_direction.x < 0:
+			animation.flip_h = true  # Olhando para a esquerda ⬅️
+		elif input_direction.x > 0:
+			animation.flip_h = false # Olhando para a direita ➡️
+		
+	
 	velocity = input_direction * speed
 	
 func update_hud() -> void:
@@ -69,6 +80,7 @@ func _on_timer_shot_timeout() -> void:
 		
 		var shot_direction = global_position.direction_to(target.global_position)
 		new_shot.direcao = shot_direction
+		new_shot.rotation = shot_direction.angle()
 		get_parent().add_child(new_shot)
 
 func nearby_enemy() -> Node2D:
@@ -78,7 +90,7 @@ func nearby_enemy() -> Node2D:
 	
 	for body in bodys_no_alcance:
 		if body.is_in_group("enemy") and is_instance_valid(body):
-			var distance = global_position.distance_to(body.global_position)
+			var distance = global_position.distance_squared_to(body.global_position)
 			
 			if distance < shortet_distance:
 				shortet_distance = distance
@@ -115,6 +127,7 @@ func is_damage() -> void:
 	for inimigo in inimigos_colados:
 		if is_instance_valid(inimigo):
 			vida_atual -= inimigo.dano
+			vidabarra.value = vida_atual
 			print("Dano recebido: ", inimigo.dano)
 	
 	vida_atual = max(vida_atual, 0)
@@ -128,10 +141,9 @@ func is_damage() -> void:
 		var minutos: int = int(tempo_decorrido) / 60
 		var segundos: int = int(tempo_decorrido) % 60
 		Global.tempo_final = "%02d:%02d" % [minutos, segundos]
-		
-		if tiro_cena:
-			var tela_derrota = load("res://Scenes/defeatScreen.tscn").instantiate()
-			get_tree().current_scene.add_child(tela_derrota)
+	
+		var tela_derrota = load("res://Scenes/defeatScreen.tscn").instantiate()
+		get_tree().current_scene.add_child(tela_derrota)
 		await get_tree().create_timer(0.1).timeout
 		get_tree().paused = true
 		
@@ -171,6 +183,7 @@ func aplicar_upgrade_dinamico(carta: UpgradeResource) -> void:
 	
 	if carta.tipo_atributo == "cura":
 		vida_atual = min(vida_atual + int(carta.valor_alteracao), max_vida)
+		vidabarra.value = vida_atual
 		
 	else:
 		var valor_atual = get(carta.tipo_atributo)

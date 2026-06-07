@@ -22,7 +22,7 @@ func _physics_process(_delta: float) -> void:
 	if player:
 		var distance = global_position.distance_to(player.global_position)
 		
-		if distance > 130.0:
+		if distance >  100.0:
 			var direction := global_position.direction_to(player.global_position)
 			velocity = direction * speed
 		else:
